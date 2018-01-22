@@ -52,6 +52,16 @@ public class Student {
 	public void setAddTime(Date addTime) {
 		this.addTime = addTime;
 	}
+	
+	
+	public Student(String name, Integer age, String gender, String address, Date birthday) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+		this.address = address;
+		this.birthday = birthday;
+	}
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", address=" + address

@@ -11,7 +11,17 @@
 	<context:component-scan base-package="com.situ.ssm"/>
 	
 	<!-- 注解驱动 -->
-	<mvc:annotation-driven/>
+	<mvc:annotation-driven conversion-service="consersionServiceFactoryBean"/>
+	<!-- 配置Converter转换器 转换工厂 -->
+    <bean id="consersionServiceFactoryBean" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+    <!--配置多个转换器  -->
+    <property name="converters">
+        <list>
+           <bean class="com.situ.ssm.Controller.DateConverter"/>
+        </list>
+    </property>
+</bean>
+	
 	
 	<!-- 视图解析器
     如果Controller中书写的是视图的逻辑名，这个视图解析器必须要配置。
@@ -24,5 +34,29 @@
     <!-- 路径后缀 -->
     <property name="suffix" value=".jsp"></property>
   </bean>
+  
+  <!-- 配置拦截器,可以配置多个拦截器-->
+<mvc:interceptors>
+    <mvc:interceptor>
+        <!-- /*只能拦截一层的请求， /**可以拦截多层的请求 -->
+        <mvc:mapping path="/**"/>
+        <bean class="com.situ.Interceptor.HandlerInterceptor1"/>
+    </mvc:interceptor>
+    <mvc:interceptor>
+        <!-- /*只能拦截一层的请求， /**可以拦截多层的请求 -->
+        <mvc:mapping path="/**"/>
+        <bean class="com.situ.Interceptor.HandlerInterceptor2"/>
+    </mvc:interceptor>
+</mvc:interceptors>
+
+<!-- id="multipartResolver" 必须要是这个名字 -->
+<!-- 配置文件上传的解析器 -->
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <!-- 设置上传文件的最大尺寸 10MB B-->
+    <property name="maxUploadSize">
+        <value>#{10*1024*1024}</value>
+    </property>
+</bean>
+  
   
 </beans>

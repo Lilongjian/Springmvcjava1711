@@ -7,12 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-${student }<br>
-REQUEST:${requestScope.teacher}<br/>
-session:${sessionScope.student}<br/>
-application:${applicationScope.student}<br/>
-id:${id}<br/>
-${name }
-${age }
+<form action="${pageContext.request.contextPath}/fileupload/upload.action" method="post" enctype="multipart/form-data">
+    用户名：<input type="text" name="name"/> <br/>
+    文件：<input type="file" name="pictureFile"/> <br/>
+    <input type="submit" value="提交"/>
+</form>
+
 </body>
 </html>

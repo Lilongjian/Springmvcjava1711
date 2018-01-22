@@ -7,12 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-${student }<br>
-REQUEST:${requestScope.teacher}<br/>
-session:${sessionScope.student}<br/>
-application:${applicationScope.student}<br/>
-id:${id}<br/>
-${name }
-${age }
+<form action="${pageContext.request.contextPath}/register.action">
+姓名：<input type="text" name="name"/><br/>
+日期：<input type="text" name="date"/><br/>
+     <input type="submit" value="提交">
+</form>
+
 </body>
 </html>
